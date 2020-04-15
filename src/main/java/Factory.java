@@ -5,16 +5,23 @@ import convert.Reverse;
 import output.Horizontal;
 import output.Output;
 
+import javax.swing.plaf.synth.SynthToolTipUI;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Factory {
     public static void factory(List<String> inputs) {
         List<String> word = Arrays.asList(inputs.get(0).split(" "));
+        List<String> rules = inputs.stream().skip(1).collect(Collectors.toList());
 
-        inputs.forEach(rule -> convertFactory(word, rule));
-        //todo:戻り値戻ってこないからどうしよ
+        for (String rule : rules) {
+            word = convertFactory(word, rule);
+        }
 
+        for (String rule : rules) {
+            System.out.println(outputFactory(word, rule));
+        }
     }
 
     public static List<String> convertFactory(List<String> words, String rule) {
@@ -31,11 +38,12 @@ public class Factory {
         return convert.convert(words);
     }
 
-    public static Output outputFactory(List<String> words, String rules) {
-        Output output;
+    public static String outputFactory(List<String> words, String rules) {
+        Output output = null;
         if (rules.equals("--horizontal")) {
             output = new Horizontal();
         }
-        return null;
+        if (output == null) return "";
+        return output.output(words);
     }
 }
