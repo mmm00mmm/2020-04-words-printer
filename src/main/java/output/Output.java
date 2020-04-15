@@ -1,5 +1,7 @@
 package output;
 
+import java.util.List;
+
 public interface Output {
-    String output();
+    String output(List<String> word);
 }
