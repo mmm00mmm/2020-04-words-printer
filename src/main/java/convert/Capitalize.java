@@ -1,4 +1,10 @@
 package convert;
 
-public class Capitalize {
+import java.util.List;
+
+public class Capitalize implements Convert {
+    @Override
+    public List<String> convert(List<String> word) {
+        return null;
+    }
 }
