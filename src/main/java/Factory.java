@@ -4,46 +4,52 @@ import convert.Convert;
 import convert.Reverse;
 import output.Horizontal;
 import output.Output;
+import output.Vertical;
 
-import javax.swing.plaf.synth.SynthToolTipUI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Factory {
-    public static void factory(List<String> inputs) {
-        List<String> word = Arrays.asList(inputs.get(0).split(" "));
-        List<String> rules = inputs.stream().skip(1).collect(Collectors.toList());
+    public static void factory(List<String> strings) {
+        List<String> word = Arrays.asList(strings.get(0).split(" "));
+        List<String> rules = strings.stream().skip(1).collect(Collectors.toList());
 
-        for (String rule : rules) {
-            word = convertFactory(word, rule);
+        for (String convertRule : rules) {
+            word = convertFactory(word, convertRule);
         }
 
-        for (String rule : rules) {
-            System.out.println(outputFactory(word, rule));
+        for (String outputRule : rules) {
+            System.out.println(outputFactory(word, outputRule));
         }
     }
 
-    public static List<String> convertFactory(List<String> words, String rule) {
+    public static List<String> convertFactory(List<String> words, String convertRule) {
         Convert convert = new Capitalize();
-        if (rule.equals("--capitalize")) {
+        //fixme: 初期値がCapitalizeなので、ifに該当しなくても勝手に変換される
+
+        if (convertRule.equals("--capitalize")) {
             convert = new Capitalize();
         }
-        if (rule.equals("--compress")) {
+        if (convertRule.equals("--compress")) {
             convert = new Compress();
         }
-        if (rule.equals("--reverse")) {
+        if (convertRule.equals("--reverse")) {
             convert = new Reverse();
         }
         return convert.convert(words);
     }
 
-    public static String outputFactory(List<String> words, String rules) {
-        Output output = null;
-        if (rules.equals("--horizontal")) {
+    public static String outputFactory(List<String> words, String outputRule) {
+        Output output = new Horizontal();
+        //fixme: 初期値がHorizontalなので、ifに該当しなくても勝手に出力される
+
+        if (outputRule.equals("--horizontal")) {
             output = new Horizontal();
         }
-        if (output == null) return "";
+        if (outputRule.equals("--vertical")) {
+            output = new Vertical();
+        }
         return output.output(words);
     }
 }
