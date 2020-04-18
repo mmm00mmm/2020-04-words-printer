@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Horizontal implements Output {
     @Override
-    public String output(List<String> word) {
-        return word.stream().collect(Collectors.joining(" "));
+    public String output(List<String> words) {
+        return words.stream().collect(Collectors.joining(" "));
     }
 }

@@ -12,15 +12,15 @@ import java.util.stream.Collectors;
 
 public class Factory {
     public static void create(List<String> strings) {
-        List<String> word = Arrays.asList(strings.get(0).split(" "));
+        List<String> words = Arrays.asList(strings.get(0).split(" "));
         List<String> rules = strings.stream().skip(1).collect(Collectors.toList());
 
         for (String convertRule : rules) {
-            word = convertFactory(word, convertRule);
+            words = convertFactory(words, convertRule);
         }
 
         for (String outputRule : rules) {
-            System.out.println(outputFactory(word, outputRule));
+            System.out.println(outputFactory(words, outputRule));
         }
     }
 
