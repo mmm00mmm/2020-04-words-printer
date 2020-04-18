@@ -24,7 +24,7 @@ public class Factory {
         }
     }
 
-    public static List<String> convertFactory(List<String> words, String convertRule) {
+    private static List<String> convertFactory(List<String> words, String convertRule) {
         Convert convert = new Capitalize();
         //fixme: 初期値がCapitalizeなので、ifに該当しなくても勝手に変換される
 
@@ -40,7 +40,7 @@ public class Factory {
         return convert.convert(words);
     }
 
-    public static String outputFactory(List<String> words, String outputRule) {
+    private static String outputFactory(List<String> words, String outputRule) {
         Output output = new Horizontal();
         //fixme: 初期値がHorizontalなので、ifに該当しなくても勝手に出力される
 
