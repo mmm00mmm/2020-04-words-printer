@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Factory {
-    public static void factory(List<String> strings) {
+    public static void create(List<String> strings) {
         List<String> word = Arrays.asList(strings.get(0).split(" "));
         List<String> rules = strings.stream().skip(1).collect(Collectors.toList());
 
