@@ -6,7 +6,7 @@ public class Main {
         //Factory.create(Arrays.asList("edward gorey"));
 
         System.out.println(
-                Factory.create(Arrays.asList("edward gorey", "--aaa", "--reverse", "--horizontal"))
+                Executor.run(Arrays.asList("edward gorey", "--reverse", "--horizontal"))
         );
         //仕様に明記されていないことは聞く！
     }
